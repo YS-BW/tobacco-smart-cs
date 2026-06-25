@@ -1,0 +1,28 @@
+.inputArea {
+  position: absolute; bottom: var(--space-6);
+  left: 50%; transform: translateX(-50%);
+  z-index: 5; width: min(680px, calc(100% - var(--space-8)));
+}
+.inputWrap {
+  display: flex; align-items: flex-end; gap: var(--space-3);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 9999px; padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+.inputWrap:focus-within { border-color: var(--accent); box-shadow: 0 2px 16px rgba(0,0,0,0.1); }
+.inputWrap textarea {
+  flex: 1; border: none; outline: none; background: transparent;
+  resize: none; min-height: 24px; max-height: 160px;
+  line-height: 1.5; color: var(--fg); padding: var(--space-1) 0;
+}
+.inputWrap textarea::placeholder { color: var(--meta); }
+.sendBtn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-on);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background var(--motion-fast), opacity var(--motion-fast);
+}
+.sendBtn:hover { background: var(--accent-hover); }
+.sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.sendBtn svg { width: 18px; height: 18px; }

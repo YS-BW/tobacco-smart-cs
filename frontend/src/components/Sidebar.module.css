@@ -1,0 +1,23 @@
+.list { overflow-y: auto; }
+.item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm); cursor: pointer;
+  font-size: var(--text-sm); color: var(--muted);
+  transition: color var(--motion-fast), background var(--motion-fast);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.item:hover { background: var(--border); color: var(--fg); }
+.item.active { background: var(--surface-warm); color: var(--fg); font-weight: 500; }
+.title { overflow: hidden; text-overflow: ellipsis; flex: 1; }
+.del {
+  opacity: 0; color: var(--meta); font-size: 18px; line-height: 1;
+  padding: 0 var(--space-1); transition: opacity var(--motion-fast);
+  flex-shrink: 0;
+}
+.item:hover .del { opacity: 1; }
+.del:hover { color: var(--danger); }
+.empty {
+  padding: var(--space-4); color: var(--meta);
+  font-size: var(--text-sm); text-align: center;
+}

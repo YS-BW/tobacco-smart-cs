@@ -1,0 +1,31 @@
+# 虚拟环境
+.venv/
+
+# 模型权重
+*.safetensors
+*.bin
+*.pt
+*.gguf
+微调模型/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+
+# 向量库 (可通过重建生成)
+Chroma/
+
+# 训练产物 (按需保留)
+训练/output/
+

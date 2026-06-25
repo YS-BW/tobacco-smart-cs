@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>烟草智能客服系统</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #1a1a2e; --surface: #16213e; --surface2: #0f3460;
+    --accent: #e94560; --text: #eee; --text2: #aaa; --border: #2a2a4a;
+    --user-bg: #e94560; --bot-bg: #16213e; --green: #4ecca3;
+  }
+  body { font-family: -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; }
+
+  /* 侧边栏 */
+  .sidebar { width: 280px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+  .sidebar h2 { padding: 20px; font-size: 16px; border-bottom: 1px solid var(--border); }
+  .sidebar .btn-new { margin: 12px 16px; padding: 10px; background: var(--accent); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  .sidebar .btn-new:hover { opacity: 0.85; }
+  .session-list { flex: 1; overflow-y: auto; padding: 8px; }
+  .session-item { padding: 12px 16px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .session-item:hover { background: var(--surface2); }
+  .session-item.active { background: var(--surface2); border-left: 3px solid var(--accent); }
+  .session-item .title { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+  .session-item .del { color: var(--text2); cursor: pointer; margin-left: 8px; font-size: 18px; line-height: 1; }
+  .session-item .del:hover { color: var(--accent); }
+
+  /* 主区域 */
+  .main { flex: 1; display: flex; flex-direction: column; }
+
+  /* 顶栏标签 */
+  .tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .tabs button { padding: 14px 24px; background: none; border: none; color: var(--text2); cursor: pointer; font-size: 14px; border-bottom: 2px solid transparent; }
+  .tabs button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* 页面 */
+  .page { flex: 1; display: none; flex-direction: column; overflow: hidden; }
+  .page.active { display: flex; }
+
+  /* 聊天页 */
+  .messages { flex: 1; overflow-y: auto; padding: 20px; }
+  .empty-hint { text-align: center; color: var(--text2); margin-top: 30vh; font-size: 15px; }
+  .empty-hint .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+  .msg { max-width: 720px; margin: 0 auto 16px; }
+  .msg .bubble { padding: 14px 18px; border-radius: 12px; font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+  .msg.user { text-align: right; }
+  .msg.user .bubble { background: var(--user-bg); color: #fff; display: inline-block; border-radius: 12px 12px 4px 12px; max-width: 80%; text-align: left; }
+  .msg.bot .bubble { background: var(--bot-bg); border: 1px solid var(--border); border-radius: 12px 12px 12px 4px; }
+  .msg .sources { margin-top: 8px; font-size: 12px; color: var(--text2); }
+  .msg .sources span { background: var(--surface2); padding: 2px 8px; border-radius: 4px; margin-right: 6px; display: inline-block; margin-bottom: 4px; cursor: default; }
+  .msg .reasoning { margin-bottom: 6px; font-size: 12px; color: var(--text2); border-left: 2px solid var(--surface2); padding-left: 10px; }
+  .msg .reasoning summary { cursor: pointer; }
+  .chat-input { padding: 16px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; max-width: 760px; margin: 0 auto; width: 100%; }
+  .chat-input textarea { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 12px 16px; font-size: 14px; resize: none; height: 48px; font-family: inherit; }
+  .chat-input textarea:focus { outline: none; border-color: var(--accent); }
+  .chat-input button { padding: 0 24px; background: var(--accent); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-size: 14px; }
+  .chat-input button:hover { opacity: 0.85; }
+  .chat-input button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* 知识库页 */
+  .kb-page { padding: 24px; overflow-y: auto; }
+  .kb-page h3 { margin-bottom: 16px; }
+  .upload-area { border: 2px dashed var(--border); border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: border-color .2s; }
+  .upload-area:hover, .upload-area.dragover { border-color: var(--accent); }
+  .upload-area input { display: none; }
+  .upload-area p { color: var(--text2); font-size: 14px; }
+  .doc-table { width: 100%; max-width: 900px; border-collapse: collapse; }
+  .doc-table th, .doc-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .doc-table th { color: var(--text2); font-weight: 500; }
+  .status { padding: 2px 10px; border-radius: 10px; font-size: 12px; }
+  .status.ready { background: #1a3a2a; color: var(--green); }
+  .status.processing { background: #3a3a1a; color: #e9c460; }
+  .status.failed { background: #3a1a1a; color: var(--accent); }
+  .doc-del { color: var(--text2); cursor: pointer; }
+  .doc-del:hover { color: var(--accent); }
+
+  /* 统计页 */
+  .stats-page { padding: 24px; overflow-y: auto; }
+  .stats-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; max-width: 900px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat-card .label { font-size: 13px; color: var(--text2); margin-bottom: 8px; }
+  .stat-card .value { font-size: 28px; font-weight: 700; }
+  .stats-page h3 { margin-bottom: 16px; }
+  .top-list { max-width: 900px; }
+  .top-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .top-item .count { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- 侧边栏 -->
+<div class="sidebar">
+  <h2>烟草智能客服</h2>
+  <button class="btn-new" onclick="createSession()">+ 新对话</button>
+  <div class="session-list" id="sessionList"></div>
+</div>
+
+<!-- 主区域 -->
+<div class="main">
+  <div class="tabs">
+    <button class="active" onclick="switchTab('chat', this)">对话</button>
+    <button onclick="switchTab('kb', this)">知识库</button>
+    <button onclick="switchTab('stats', this)">统计</button>
+  </div>
+
+  <!-- 对话页 -->
+  <div class="page active" id="page-chat">
+    <div class="messages" id="messages">
+      <div class="empty-hint" id="emptyHint">
+        <div class="icon">&#128172;</div>
+        <div>点击左侧「+ 新对话」开始聊天</div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <textarea id="input" placeholder="输入消息，Enter 发送..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"></textarea>
+      <button id="sendBtn" onclick="sendMessage()">发送</button>
+    </div>
+  </div>
+
+  <!-- 知识库页 -->
+  <div class="page kb-page" id="page-kb">
+    <h3>上传文档</h3>
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.md" onchange="uploadFiles(this.files)">
+      <p>点击或拖拽文件到此处上传</p>
+      <p style="font-size:12px;margin-top:8px;">支持 PDF / Word / 图片 / Markdown</p>
+    </div>
+    <h3>文档列表</h3>
+    <table class="doc-table">
+      <thead><tr><th>ID</th><th>文件名</th><th>类型</th><th>分块</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody id="docList"></tbody>
+    </table>
+  </div>
+
+  <!-- 统计页 -->
+  <div class="page stats-page" id="page-stats">
+    <h3>数据概览</h3>
+    <div class="stats-cards" id="statsCards"></div>
+    <h3>热门问题</h3>
+    <div class="top-list" id="topQuestions"></div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let currentSession = null;
+let sessions = [];
+let sending = false;
+
+// ── 标签切换 ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('page-' + name).classList.add('active');
+  if (name === 'kb') loadDocuments();
+  if (name === 'stats') loadStats();
+}
+
+// ── 会话管理 ──
+async function loadSessions() {
+  const res = await fetch(API + '/api/sessions');
+  const data = await res.json();
+  sessions = data.data || [];
+  renderSessions();
+}
+
+function renderSessions() {
+  const el = document.getElementById('sessionList');
+  el.innerHTML = sessions.map(s =>
+    `<div class="session-item ${s.id === currentSession ? 'active' : ''}" onclick="selectSession('${s.id}')">
+      <span class="title">${esc(s.title)}</span>
+      <span class="del" onclick="event.stopPropagation();deleteSession('${s.id}')">&times;</span>
+    </div>`
+  ).join('');
+}
+
+async function createSession() {
+  const res = await fetch(API + '/api/sessions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+  const data = await res.json();
+  await loadSessions();
+  selectSession(data.data.id);
+}
+
+async function selectSession(id) {
+  currentSession = id;
+  renderSessions();
+  const messagesEl = document.getElementById('messages');
+  messagesEl.innerHTML = '';
+  // 加载历史消息
+  const res = await fetch(API + `/api/sessions/${id}/messages`);
+  const data = await res.json();
+  const msgs = data.data || [];
+  if (msgs.length === 0) {
+    messagesEl.innerHTML = '<div class="empty-hint"><div class="icon">&#128172;</div><div>发送消息开始对话</div></div>';
+  }
+  for (const m of msgs) {
+    appendMsg(m.role, m.content, m.reasoning_content, m.references);
+  }
+}
+
+async function deleteSession(id) {
+  await fetch(API + `/api/sessions/${id}`, { method: 'DELETE' });
+  if (currentSession === id) {
+    currentSession = null;
+    document.getElementById('messages').innerHTML = '<div class="empty-hint"><div class="icon">&#128172;</div><div>点击左侧「+ 新对话」开始聊天</div></div>';
+  }
+  await loadSessions();
+}
+
+// ── 对话 ──
+async function sendMessage() {
+  if (sending) return;
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  // 没有会话时自动创建
+  if (!currentSession) {
+    const res = await fetch(API + '/api/sessions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const data = await res.json();
+    currentSession = data.data.id;
+    await loadSessions();
+    renderSessions();
+  }
+
+  input.value = '';
+  sending = true;
+
+  // 清掉空状态提示
+  const hint = document.getElementById('emptyHint');
+  if (hint) hint.remove();
+
+  appendMsg('user', text);
+
+  // 创建 bot 消息占位
+  const botEl = appendMsg('bot', '');
+  const reasoningEl = botEl.querySelector('.reasoning-text');
+  const contentEl = botEl.querySelector('.bubble');
+  const sourcesEl = botEl.querySelector('.sources');
+  let reasoningBuf = '', contentBuf = '';
+
+  document.getElementById('sendBtn').disabled = true;
+
+  try {
+    const res = await fetch(API + '/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: currentSession, message: text })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      contentEl.textContent = '[错误] ' + (err.detail || res.statusText);
+      sending = false;
+      document.getElementById('sendBtn').disabled = false;
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        try {
+          const d = JSON.parse(line.slice(6));
+          if (d.type === 'references' && d.sources && d.sources.length) {
+            sourcesEl.innerHTML = d.sources.map(s =>
+              `<span title="${esc(s.content)}">[${s.index}] ${esc(s.title)}</span>`
+            ).join('');
+          } else if (d.type === 'reasoning') {
+            reasoningBuf += d.text;
+            reasoningEl.textContent = reasoningBuf;
+            reasoningEl.parentElement.style.display = '';
+          } else if (d.type === 'content') {
+            contentBuf += d.text;
+            contentEl.textContent = contentBuf;
+          } else if (d.type === 'error') {
+            contentEl.textContent = '[错误] ' + d.text;
+          }
+        } catch {}
+      }
+    }
+
+    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    await loadSessions();
+  } catch (e) {
+    contentEl.textContent = '[请求失败] ' + e.message;
+  }
+  sending = false;
+  document.getElementById('sendBtn').disabled = false;
+  input.focus();
+}
+
+function appendMsg(role, content, reasoning, references) {
+  const el = document.createElement('div');
+  el.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+  if (role === 'user') {
+    el.innerHTML = `<div class="bubble">${esc(content)}</div>`;
+  } else {
+    el.innerHTML = `
+      <details class="reasoning" style="display:none"><summary>推理过程</summary><span class="reasoning-text">${esc(reasoning || '')}</span></details>
+      <div class="sources">${references ? references.map(s => `<span>[${s.index}] ${esc(s.title)}</span>`).join('') : ''}</div>
+      <div class="bubble">${esc(content)}</div>`;
+  }
+  document.getElementById('messages').appendChild(el);
+  el.scrollIntoView({ behavior: 'smooth' });
+  return el;
+}
+
+// ── 知识库 ──
+async function loadDocuments() {
+  const res = await fetch(API + '/api/knowledge/documents');
+  const data = await res.json();
+  const el = document.getElementById('docList');
+  el.innerHTML = (data.data || []).map(d =>
+    `<tr>
+      <td>${d.id}</td><td>${esc(d.filename)}</td><td>${d.file_type}</td>
+      <td>${d.chunk_count}</td>
+      <td><span class="status ${d.status}">${d.status}</span></td>
+      <td><span class="doc-del" onclick="deleteDoc(${d.id})">删除</span></td>
+    </tr>`
+  ).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text2)">暂无文档</td></tr>';
+}
+
+async function uploadFiles(files) {
+  if (!files.length) return;
+  const fd = new FormData();
+  for (const f of files) fd.append('files', f);
+  await fetch(API + '/api/knowledge/upload', { method: 'POST', body: fd });
+  document.getElementById('fileInput').value = '';
+  const poll = setInterval(() => loadDocuments(), 2000);
+  setTimeout(() => clearInterval(poll), 30000);
+}
+
+async function deleteDoc(id) {
+  await fetch(API + `/api/knowledge/documents/${id}`, { method: 'DELETE' });
+  await loadDocuments();
+}
+
+const ua = document.getElementById('uploadArea');
+ua.addEventListener('dragover', e => { e.preventDefault(); ua.classList.add('dragover'); });
+ua.addEventListener('dragleave', () => ua.classList.remove('dragover'));
+ua.addEventListener('drop', e => { e.preventDefault(); ua.classList.remove('dragover'); uploadFiles(e.dataTransfer.files); });
+
+// ── 统计 ──
+async function loadStats() {
+  const [overview, top] = await Promise.all([
+    fetch(API + '/api/stats/overview').then(r => r.json()),
+    fetch(API + '/api/stats/top-questions').then(r => r.json()),
+  ]);
+  const d = overview.data || {};
+  document.getElementById('statsCards').innerHTML = [
+    { label: '总会话数', value: d.total_sessions },
+    { label: '总消息数', value: d.total_messages },
+    { label: '知识库文档', value: d.total_docs },
+    { label: '知识库命中率', value: d.kb_hit_rate + '%' },
+  ].map(c => `<div class="stat-card"><div class="label">${c.label}</div><div class="value">${c.value ?? '-'}</div></div>`).join('');
+
+  document.getElementById('topQuestions').innerHTML = (top.data || []).length
+    ? (top.data || []).map((q, i) => `<div class="top-item"><span>${i + 1}. ${esc(q.question)}</span><span class="count">${q.count} 次</span></div>`).join('')
+    : '<div style="color:var(--text2);padding:12px 0">暂无数据</div>';
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+// ── 初始化 ──
+loadSessions();
+</script>
+</body>
+</html>

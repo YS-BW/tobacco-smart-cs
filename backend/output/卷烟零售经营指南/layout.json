@@ -1,0 +1,1000 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "bbox": [
+                        231,
+                        29,
+                        362,
+                        47
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                233,
+                                30,
+                                361,
+                                47
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        233,
+                                        30,
+                                        361,
+                                        47
+                                    ],
+                                    "type": "text",
+                                    "content": "卷烟零售经营指南",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        28,
+                        67,
+                        111,
+                        83
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 1,
+                    "lines": [
+                        {
+                            "bbox": [
+                                29,
+                                66,
+                                109,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        29,
+                                        66,
+                                        109,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "一、开店准备",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        91,
+                        349,
+                        105
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 2,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                94,
+                                346,
+                                103
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        94,
+                                        346,
+                                        103
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 选址：选择人流量较大的商业区域，注意与学校保持规定距离。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        114,
+                        382,
+                        127
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 3,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                116,
+                                380,
+                                126
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        116,
+                                        380,
+                                        126
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 办证：取得营业执照后，向当地烟草专卖局申请烟草专卖零售许可证。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        136,
+                        349,
+                        150
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 4,
+                    "lines": [
+                        {
+                            "bbox": [
+                                31,
+                                138,
+                                346,
+                                148
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        31,
+                                        138,
+                                        346,
+                                        148
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 进货：通过当地烟草公司正规渠道进货，不得从非法渠道采购。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        29,
+                        172,
+                        137,
+                        188
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 5,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                173,
+                                134,
+                                188
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        173,
+                                        134,
+                                        188
+                                    ],
+                                    "type": "text",
+                                    "content": "二、日常经营要点",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        195,
+                        348,
+                        210
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 6,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                198,
+                                346,
+                                207
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        198,
+                                        346,
+                                        207
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 明码标价：所有卷烟必须明码标价，不得哄抬价格或低价倾销。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        218,
+                        327,
+                        232
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 7,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                220,
+                                324,
+                                231
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        220,
+                                        324,
+                                        231
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 真烟销售：严禁销售假冒伪劣卷烟，发现假烟应立即举报。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        241,
+                        338,
+                        255
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 8,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                243,
+                                334,
+                                253
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        243,
+                                        334,
+                                        253
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 限量供应：部分紧俏品牌实行限量供应，应合理分配给客户。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        29,
+                        277,
+                        137,
+                        292
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 9,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                277,
+                                135,
+                                292
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        277,
+                                        135,
+                                        292
+                                    ],
+                                    "type": "text",
+                                    "content": "三、法律法规须知",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        301,
+                        173,
+                        315
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 10,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                302,
+                                171,
+                                313
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        302,
+                                        171,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 禁止向未成年人销售卷烟。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        323,
+                        217,
+                        337
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 11,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                325,
+                                214,
+                                337
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        325,
+                                        214,
+                                        337
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 不得在大众传播媒介发布烟草广告。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        346,
+                        239,
+                        359
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 12,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                347,
+                                236,
+                                359
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        347,
+                                        236,
+                                        359
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 烟草专卖许可证不得涂改、伪造、转让。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        369,
+                        196,
+                        382
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 13,
+                    "lines": [
+                        {
+                            "bbox": [
+                                31,
+                                370,
+                                193,
+                                381
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        31,
+                                        370,
+                                        193,
+                                        381
+                                    ],
+                                    "type": "text",
+                                    "content": "4. 跨地域携带卷烟不得超过50条。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                }
+            ],
+            "discarded_blocks": [],
+            "page_size": [
+                595,
+                841
+            ],
+            "page_idx": 0,
+            "para_blocks": [
+                {
+                    "bbox": [
+                        231,
+                        29,
+                        362,
+                        47
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                233,
+                                30,
+                                361,
+                                47
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        233,
+                                        30,
+                                        361,
+                                        47
+                                    ],
+                                    "type": "text",
+                                    "content": "卷烟零售经营指南",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        28,
+                        67,
+                        111,
+                        83
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 1,
+                    "lines": [
+                        {
+                            "bbox": [
+                                29,
+                                66,
+                                109,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        29,
+                                        66,
+                                        109,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "一、开店准备",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        91,
+                        349,
+                        105
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 2,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                94,
+                                346,
+                                103
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        94,
+                                        346,
+                                        103
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 选址：选择人流量较大的商业区域，注意与学校保持规定距离。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        114,
+                        382,
+                        127
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 3,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                116,
+                                380,
+                                126
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        116,
+                                        380,
+                                        126
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 办证：取得营业执照后，向当地烟草专卖局申请烟草专卖零售许可证。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        136,
+                        349,
+                        150
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 4,
+                    "lines": [
+                        {
+                            "bbox": [
+                                31,
+                                138,
+                                346,
+                                148
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        31,
+                                        138,
+                                        346,
+                                        148
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 进货：通过当地烟草公司正规渠道进货，不得从非法渠道采购。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        29,
+                        172,
+                        137,
+                        188
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 5,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                173,
+                                134,
+                                188
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        173,
+                                        134,
+                                        188
+                                    ],
+                                    "type": "text",
+                                    "content": "二、日常经营要点",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        195,
+                        348,
+                        210
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 6,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                198,
+                                346,
+                                207
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        198,
+                                        346,
+                                        207
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 明码标价：所有卷烟必须明码标价，不得哄抬价格或低价倾销。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        218,
+                        327,
+                        232
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 7,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                220,
+                                324,
+                                231
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        220,
+                                        324,
+                                        231
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 真烟销售：严禁销售假冒伪劣卷烟，发现假烟应立即举报。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        241,
+                        338,
+                        255
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 8,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                243,
+                                334,
+                                253
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        243,
+                                        334,
+                                        253
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 限量供应：部分紧俏品牌实行限量供应，应合理分配给客户。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        29,
+                        277,
+                        137,
+                        292
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "index": 9,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                277,
+                                135,
+                                292
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        277,
+                                        135,
+                                        292
+                                    ],
+                                    "type": "text",
+                                    "content": "三、法律法规须知",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        29,
+                        301,
+                        173,
+                        315
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 10,
+                    "lines": [
+                        {
+                            "bbox": [
+                                32,
+                                302,
+                                171,
+                                313
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        32,
+                                        302,
+                                        171,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": "1. 禁止向未成年人销售卷烟。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        323,
+                        217,
+                        337
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 11,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                325,
+                                214,
+                                337
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        325,
+                                        214,
+                                        337
+                                    ],
+                                    "type": "text",
+                                    "content": "2. 不得在大众传播媒介发布烟草广告。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        346,
+                        239,
+                        359
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 12,
+                    "lines": [
+                        {
+                            "bbox": [
+                                30,
+                                347,
+                                236,
+                                359
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        30,
+                                        347,
+                                        236,
+                                        359
+                                    ],
+                                    "type": "text",
+                                    "content": "3. 烟草专卖许可证不得涂改、伪造、转让。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                },
+                {
+                    "bbox": [
+                        28,
+                        369,
+                        196,
+                        382
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 13,
+                    "lines": [
+                        {
+                            "bbox": [
+                                31,
+                                370,
+                                193,
+                                381
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        31,
+                                        370,
+                                        193,
+                                        381
+                                    ],
+                                    "type": "text",
+                                    "content": "4. 跨地域携带卷烟不得超过50条。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                }
+            ]
+        }
+    ],
+    "_backend": "hybrid",
+    "_effort": "medium",
+    "_ocr_enable": false,
+    "_version_name": "3.4.0"
+}

@@ -1,0 +1,246 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "卷烟零售经营指南"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                388,
+                34,
+                608,
+                55
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "一、开店准备"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                47,
+                79,
+                186,
+                98
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. 选址：选择人流量较大的商业区域，注意与学校保持规定距离。"
+                    }
+                ]
+            },
+            "bbox": [
+                48,
+                108,
+                586,
+                124
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. 办证：取得营业执照后，向当地烟草专卖局申请烟草专卖零售许可证。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                135,
+                642,
+                151
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. 进货：通过当地烟草公司正规渠道进货，不得从非法渠道采购。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                161,
+                586,
+                178
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "二、日常经营要点"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                48,
+                204,
+                230,
+                223
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. 明码标价：所有卷烟必须明码标价，不得哄抬价格或低价倾销。"
+                    }
+                ]
+            },
+            "bbox": [
+                48,
+                231,
+                584,
+                249
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. 真烟销售：严禁销售假冒伪劣卷烟，发现假烟应立即举报。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                259,
+                549,
+                275
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. 限量供应：部分紧俏品牌实行限量供应，应合理分配给客户。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                286,
+                568,
+                303
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "三、法律法规须知"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                48,
+                329,
+                230,
+                347
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. 禁止向未成年人销售卷烟。"
+                    }
+                ]
+            },
+            "bbox": [
+                48,
+                357,
+                290,
+                374
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. 不得在大众传播媒介发布烟草广告。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                384,
+                364,
+                400
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. 烟草专卖许可证不得涂改、伪造、转让。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                411,
+                401,
+                426
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4. 跨地域携带卷烟不得超过50条。"
+                    }
+                ]
+            },
+            "bbox": [
+                47,
+                438,
+                329,
+                454
+            ]
+        }
+    ]
+]
