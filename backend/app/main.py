@@ -11,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from app.api import chat, knowledge, stats
 from app.config import MODEL_WARMUP_ENABLED, RAG_WARMUP_QUERY
 from app.db.database import init_db
+from app.services.document_processor import start_document_workers, stop_document_workers
 from app.services import llm_service, rag_service
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -37,8 +38,15 @@ app.include_router(stats.router, prefix="/api")
 async def startup():
     """启动时初始化数据库。"""
     await init_db()
+    start_document_workers()
     if MODEL_WARMUP_ENABLED:
         await warmup_models()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    """关闭后台文档处理 worker。"""
+    await stop_document_workers()
 
 
 async def warmup_models() -> None:

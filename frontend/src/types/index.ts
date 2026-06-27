@@ -26,7 +26,7 @@ export interface Message {
 export interface KnowledgeDoc {
   id: number;
   filename: string;
-  file_type: "pdf" | "word" | "image" | "markdown";
+  file_type: "pdf" | "word" | "image" | "markdown" | "html";
   chunk_count: number;
   status: "processing" | "ready" | "failed";
   created_at: string;

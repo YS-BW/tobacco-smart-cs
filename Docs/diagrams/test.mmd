@@ -1,0 +1,27 @@
+graph TB
+    subgraph 前端
+        A[React + Vite] -->|HTTP / SSE / WebSocket| B[FastAPI 后端]
+    end
+
+    subgraph 后端服务
+        B --> C[意图路由]
+        C -->|需要检索| D[RAG 服务]
+        C -->|无需检索| E[LLM 服务]
+        D --> F[向量粗筛]
+        F --> G[Reranker 精排]
+        G --> E
+        B --> H[知识库管理]
+        B --> I[数据统计]
+    end
+
+    subgraph 存储层
+        D --> J[(ChromaDB)]
+        B --> K[(SQLite)]
+        H --> L[MinerU / markitdown]
+    end
+
+    subgraph 模型层
+        E --> M[tobacco-csa<br/>本地 Ollama]
+        F --> N[DashScope text-embedding-v4]
+        G --> O[DashScope qwen3-rerank]
+    end

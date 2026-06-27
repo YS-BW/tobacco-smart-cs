@@ -1,28 +1,44 @@
 .inputArea {
-  position: absolute; bottom: var(--space-6);
+  position: absolute; bottom: var(--space-8);
   left: 50%; transform: translateX(-50%);
-  z-index: 5; width: min(680px, calc(100% - var(--space-8)));
+  z-index: 5; width: min(760px, calc(100% - var(--space-12)));
 }
 .inputWrap {
-  display: flex; align-items: flex-end; gap: var(--space-3);
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 9999px; padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex; align-items: center; gap: var(--space-4);
+  background: rgba(230, 228, 220, 0.72); border: 1px solid var(--line);
+  border-radius: 9999px; padding: var(--space-2) var(--space-4);
+  box-shadow: 0 8px 40px rgba(31, 9, 9, 0.16), 0 2px 8px rgba(31, 9, 9, 0.08);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   transition: border-color var(--motion-fast), box-shadow var(--motion-fast);
 }
-.inputWrap:focus-within { border-color: var(--accent); box-shadow: 0 2px 16px rgba(0,0,0,0.1); }
+:global([data-theme="dark"]) .inputWrap {
+  background: rgba(26, 24, 20, 0.78);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.inputWrap:focus-within {
+  border-color: rgba(212, 85, 62, 0.4);
+  box-shadow:
+    0 0 0 3px rgba(212, 85, 62, 0.12),
+    0 0 24px rgba(212, 85, 62, 0.18),
+    0 8px 40px rgba(31, 9, 9, 0.16),
+    0 2px 8px rgba(31, 9, 9, 0.08);
+}
 .inputWrap textarea {
   flex: 1; border: none; outline: none; background: transparent;
   resize: none; min-height: 24px; max-height: 160px;
-  line-height: 1.5; color: var(--fg); padding: var(--space-1) 0;
+  font-family: var(--font-display);
+  font-style: italic; font-weight: 900;
+  line-height: 1.5; color: var(--ink); padding: var(--space-1) 0;
 }
-.inputWrap textarea::placeholder { color: var(--meta); }
+.inputWrap textarea::placeholder { color: var(--ink-faint); }
 .sendBtn {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--accent); color: var(--accent-on);
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--coral); color: #fff;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; transition: background var(--motion-fast), opacity var(--motion-fast);
+  box-shadow: var(--shadow-sm);
 }
-.sendBtn:hover { background: var(--accent-hover); }
+.sendBtn:hover { background: var(--coral-soft); }
 .sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.sendBtn svg { width: 18px; height: 18px; }
+.sendBtn svg { width: 22px; height: 22px; }

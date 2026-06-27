@@ -1,35 +1,41 @@
-/* ── Design Tokens (from ai-chat-assistant.html prototype) ────── */
-:root {
-  --bg: #f5f4ed;
-  --surface: #faf9f5;
-  --surface-warm: #e8e6dc;
-  --fg: #141413;
-  --fg-2: #3d3d3a;
-  --muted: #5e5d59;
-  --meta: #87867f;
-  --border: #f0eee6;
-  --border-soft: #e8e6dc;
-  --accent: #c96442;
-  --accent-on: #faf9f5;
-  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
-  --accent-active: color-mix(in oklab, var(--accent), black 14%);
-  --success: #17a34a;
-  --warn: #eab308;
-  --danger: #b53333;
+/* ── Design Tokens — Newsprint ────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
-  --font-display: "Georgia", "Times New Roman", serif;
-  --font-body: "Georgia", "Times New Roman", serif;
+:root {
+  --paper: #f3f2ee;
+  --paper-warm: #e8e6e0;
+  --paper-dark: #d5d3cd;
+  --bone: #e6e4dc;
+  --ink: #1f0909;
+  --ink-soft: #3a2a2a;
+  --ink-mute: #656565;
+  --ink-faint: #999999;
+  --coral: #d4553e;
+  --coral-soft: #c44832;
+  --mustard: #b8860b;
+  --olive: #556b2f;
+  --link: #065588;
+  --line: #c5c5c5;
+  --line-soft: #dadada;
+  --line-faint: #e8e7e7;
+  --success: #17a34a;
+  --warn: #b8860b;
+  --danger: #dc2626;
+
+  --font-sans: Georgia, "Times New Roman", serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: Georgia, "Noto Serif SC", "宋体", serif;
   --font-mono: ui-monospace, "JetBrains Mono", Menlo, monospace;
 
-  --text-xs: 10px;
-  --text-sm: 14px;
+  --text-xs: 11px;
+  --text-sm: 13.5px;
   --text-base: 16px;
   --text-lg: 20px;
   --text-xl: 25px;
   --text-2xl: 32px;
 
-  --leading-body: 1.6;
-  --leading-tight: 1.1;
+  --leading-body: 1.5;
+  --leading-tight: 1.05;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -40,17 +46,49 @@
   --space-8: 32px;
   --space-12: 48px;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius: 20px;
+  --radius-sm: 20px;
+  --radius-md: 20px;
+  --radius-lg: 20px;
 
-  --elev-flat: none;
-  --elev-ring: 0 0 0 1px var(--border);
-  --elev-raised: rgba(0,0,0,0.05) 0px 4px 24px;
+  --shadow: 0 2px 8px rgba(31, 9, 9, 0.08);
+  --shadow-sm: 0 1px 4px rgba(31, 9, 9, 0.06);
 
   --motion-fast: 150ms;
   --motion-base: 200ms;
-  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Aliases for component compatibility */
+  --bg: var(--paper);
+  --surface: var(--bone);
+  --surface-warm: var(--paper-warm);
+  --fg: var(--ink);
+  --fg-2: var(--ink-soft);
+  --muted: var(--ink-mute);
+  --meta: var(--ink-faint);
+  --border: var(--line);
+  --border-soft: var(--line-soft);
+  --accent: var(--coral);
+  --accent-on: #fff;
+  --accent-hover: color-mix(in oklab, var(--coral), black 8%);
+  --accent-active: color-mix(in oklab, var(--coral), black 14%);
+}
+
+/* ── Dark Mode ────── */
+[data-theme="dark"] {
+  --paper: #1a1a1a;
+  --paper-warm: #222222;
+  --paper-dark: #2a2a2a;
+  --bone: #252525;
+  --ink: #e8e8e8;
+  --ink-soft: #cccccc;
+  --ink-mute: #999999;
+  --ink-faint: #666666;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --line-faint: rgba(255, 255, 255, 0.03);
+  --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,13 +96,17 @@ html { height: 100%; }
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--fg);
-  background: var(--bg);
+  color: var(--ink);
+  background: var(--paper);
   line-height: var(--leading-body);
   height: 100%;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
 }
-a { color: var(--accent); text-decoration: none; }
+
+a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, textarea { font-family: inherit; font-size: inherit; }

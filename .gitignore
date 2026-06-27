@@ -1,31 +1,40 @@
-# 虚拟环境
-.venv/
+# ===== 不提交的顶层目录 =====
+页面原型/
+知识库素材/
+微调数据集/
+微调模型/
+课设介绍/
+数据/
+.claude/
+.playwright-cli/
 
-# 模型权重
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db
+*.sw?
+
+# ===== 模型权重 =====
 *.safetensors
 *.bin
 *.pt
 *.gguf
-微调模型/
+*.onnx
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-dist/
-build/
+# ===== Backend =====
+backend/.venv/
+backend/.pytest_cache/
+backend/.env
+backend/data/
+backend/output/
+backend/**/__pycache__/
+backend/*.db
+backend/*.egg-info/
+backend/dist/
+backend/build/
 
-# 系统文件
-.DS_Store
-Thumbs.db
-
-# Claude
-.claude/
-
-# 向量库 (可通过重建生成)
-Chroma/
-
-# 训练产物 (按需保留)
-训练/output/
-
+# ===== Frontend =====
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/*.local
+frontend/color-card.html

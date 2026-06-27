@@ -2,9 +2,22 @@
   display: flex; flex: 1; flex-direction: column;
   min-height: 0; position: relative;
 }
+.themeToggle {
+  position: absolute; top: var(--space-4); right: var(--space-4);
+  z-index: 10;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bone); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-mute);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--motion-fast), background var(--motion-fast), border-color var(--motion-fast);
+}
+.themeToggle:hover {
+  color: var(--ink); border-color: var(--coral);
+}
 .messages {
   flex: 1; overflow-y: auto;
-  padding: 92px clamp(24px, 6vw, 96px) 112px;
+  padding: 92px clamp(24px, 6vw, 96px) 140px;
   display: flex; flex-direction: column;
   align-items: center;
   gap: var(--space-4);
@@ -12,6 +25,6 @@
 
 @media (max-width: 640px) {
   .messages {
-    padding: 76px clamp(16px, 4vw, 24px) 104px;
+    padding: 76px clamp(16px, 4vw, 24px) 140px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, type ReactNode } from "react";
+import React, { createContext, useContext, useReducer, useEffect, type ReactNode } from "react";
 import type { Session, Message, KnowledgeDoc, StatsOverview, TopQuestion, SourceInfo } from "../types";
 
 interface AppState {
@@ -15,7 +15,20 @@ interface AppState {
   stats: StatsOverview | null;
   hotQuestions: TopQuestion[];
   panels: { sidebar: boolean; kb: boolean; stats: boolean };
+  theme: "light" | "dark";
 }
+
+const getSystemTheme = (): "light" | "dark" =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+const getInitialTheme = (): "light" | "dark" => {
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark" || saved === "light") return saved;
+  return getSystemTheme();
+};
+
+const initialTheme = getInitialTheme();
+document.documentElement.setAttribute("data-theme", initialTheme);
 
 const initialState: AppState = {
   sessions: [],
@@ -26,6 +39,7 @@ const initialState: AppState = {
   stats: null,
   hotQuestions: [],
   panels: { sidebar: false, kb: false, stats: false },
+  theme: initialTheme,
 };
 
 type Action =
@@ -44,7 +58,9 @@ type Action =
   | { type: "SET_STATS"; stats: StatsOverview }
   | { type: "SET_HOT_QUESTIONS"; questions: TopQuestion[] }
   | { type: "TOGGLE_PANEL"; panel: "sidebar" | "kb" | "stats" }
-  | { type: "CLOSE_ALL_PANELS" };
+  | { type: "CLOSE_ALL_PANELS" }
+  | { type: "TOGGLE_THEME" }
+  | { type: "SET_THEME"; theme: "light" | "dark" };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -98,6 +114,16 @@ function reducer(state: AppState, action: Action): AppState {
     }
     case "CLOSE_ALL_PANELS":
       return { ...state, panels: { sidebar: false, kb: false, stats: false } };
+    case "TOGGLE_THEME": {
+      const newTheme = state.theme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      document.documentElement.setAttribute("data-theme", newTheme);
+      return { ...state, theme: newTheme };
+    }
+    case "SET_THEME": {
+      document.documentElement.setAttribute("data-theme", action.theme);
+      return { ...state, theme: action.theme };
+    }
     default:
       return state;
   }
@@ -107,6 +133,17 @@ const AppContext = createContext<{ state: AppState; dispatch: React.Dispatch<Act
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // 始终监听系统主题变化
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = (e: MediaQueryListEvent) => {
+      dispatch({ type: "SET_THEME", theme: e.matches ? "dark" : "light" });
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 }
 

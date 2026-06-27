@@ -1,22 +1,28 @@
 """API 接口测试。"""
 
+import asyncio
 import json
+import time
 
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
+from app.api import knowledge as knowledge_api
 from app.main import app
 from app.db import database
 from app.db.database import get_db, init_db
+from app.services.document_processor import stop_document_workers
 
 
 @pytest_asyncio.fixture(autouse=True)
 async def setup_db(monkeypatch, tmp_path):
     """每个测试使用独立临时数据库，避免污染开发库。"""
     monkeypatch.setattr(database, "SQLITE_DB_PATH", str(tmp_path / "chat.db"))
+    await stop_document_workers()
     await init_db()
     yield
+    await stop_document_workers()
     db = await get_db()
     try:
         await db.execute("DELETE FROM qa_logs")
@@ -142,6 +148,31 @@ async def test_delete_document_not_found(client: AsyncClient):
     """删除不存在的文档返回 404。"""
     resp = await client.delete("/api/knowledge/documents/999")
     assert resp.status_code == 404
+
+
+async def test_upload_returns_before_document_processing_finishes(
+    client: AsyncClient,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path,
+):
+    """上传接口只保存文件和入队，不等待后续解析/向量化完成。"""
+    monkeypatch.setattr(knowledge_api, "RAW_DIR", str(tmp_path / "raw"))
+
+    async def slow_process(*args, **kwargs):
+        await asyncio.sleep(0.25)
+
+    monkeypatch.setattr(knowledge_api, "process_document", slow_process)
+
+    start = time.perf_counter()
+    resp = await client.post(
+        "/api/knowledge/upload",
+        files={"files": ("fast.md", b"# fast\n\ncontent", "text/markdown")},
+    )
+    elapsed = time.perf_counter() - start
+
+    assert resp.status_code == 201
+    assert elapsed < 0.15
+    assert resp.json()["data"]["docs"][0]["status"] == "processing"
 
 
 # ── 统计接口 ──

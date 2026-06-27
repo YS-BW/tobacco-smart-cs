@@ -1,46 +1,105 @@
 .upload {
-  background: var(--surface); border: 2px dashed var(--border-soft);
+  background: var(--bone); border: 2px dashed var(--line-soft);
   border-radius: var(--radius-lg); padding: var(--space-12);
   text-align: center; transition: border-color var(--motion-fast), background var(--motion-fast);
   cursor: pointer; margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
 }
 .upload:hover, .upload.dragover {
-  border-color: var(--accent); background: color-mix(in oklab, var(--accent), var(--surface) 92%);
+  border-color: var(--coral); background: color-mix(in oklab, var(--coral), var(--bone) 92%);
 }
-.uploadIcon { font-size: 40px; opacity: 0.4; margin-bottom: var(--space-3); }
-.uploadText { font-size: var(--text-lg); color: var(--fg); font-weight: 500; }
-.uploadHint { font-size: var(--text-sm); color: var(--meta); margin-top: var(--space-2); }
+.upload.uploading {
+  cursor: default; border-style: solid;
+  border-color: var(--coral); background: color-mix(in oklab, var(--coral), var(--bone) 95%);
+}
+.uploadIcon { font-size: 40px; opacity: 0.4; margin-bottom: var(--space-3); color: var(--ink-mute); }
+.uploadText { font-family: var(--font-sans); font-size: var(--text-lg); color: var(--ink); font-weight: 500; }
+.uploadHint { font-size: var(--text-sm); color: var(--ink-faint); margin-top: var(--space-2); }
 .upload input[type="file"] { display: none; }
+.uploadProgress { text-align: center; }
+.uploadProgressText { font-family: var(--font-sans); font-size: var(--text-lg); color: var(--coral); font-weight: 600; }
+.uploadFileList { margin-top: var(--space-3); max-height: 120px; overflow-y: auto; }
+.uploadFileName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-sm); color: var(--ink-mute);
+  padding: var(--space-1) 0;
+}
+.uploadFileName span:first-child {
+  min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.uploadFileStatus {
+  flex-shrink: 0;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+.uploadFileStatus.waiting { background: var(--line-soft); color: var(--ink-faint); }
+.uploadFileStatus.uploading { background: #fef9e7; color: #b45309; }
+.uploadFileStatus.submitted { background: #e8faf0; color: var(--success); }
+.uploadFileStatus.failed { background: #fde8e8; color: var(--danger); }
 
 .tableWrap {
-  background: var(--surface); border-radius: var(--radius-lg);
-  border: 1px solid var(--border); overflow: hidden;
+  background: var(--bone); border-radius: var(--radius-lg);
+  border: 1px solid var(--line); overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 .table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
 .table th {
   text-align: left; padding: var(--space-3) var(--space-4);
-  background: var(--surface-warm); font-weight: 600; color: var(--fg-2);
-  border-bottom: 1px solid var(--border);
+  background: var(--paper-warm); font-family: var(--font-sans); font-weight: 600; color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
 }
 .table td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line-soft);
 }
 .table tr:last-child td { border-bottom: none; }
-.table tr:hover td { background: color-mix(in oklab, var(--border), transparent 50%); }
+.table tr:hover td { background: color-mix(in oklab, var(--line-soft), transparent 50%); }
 
 .typeBadge {
   display: inline-block; padding: 2px 8px; border-radius: 9999px;
+  font-family: var(--font-sans);
   font-size: var(--text-xs); font-weight: 500;
 }
 .typeBadge.pdf { background: #fde8e8; color: #b53333; }
 .typeBadge.word { background: #e8f0fe; color: #1a56db; }
 .typeBadge.image { background: #e8faf0; color: #17a34a; }
 .typeBadge.markdown { background: #f3e8ff; color: #7c3aed; }
+.typeBadge.html { background: #fef3e2; color: #c2410c; }
+
+.docSummary {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-sans); font-size: var(--text-sm); color: var(--ink-soft);
+}
+.docCount {
+  font-weight: 700; color: var(--coral); font-size: var(--text-base);
+}
+
+.searchBar {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bone); border-bottom: 1px solid var(--line-soft);
+}
+.searchInput {
+  flex: 1;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans); font-size: var(--text-sm); color: var(--ink);
+  outline: none; transition: border-color var(--motion-fast);
+}
+.searchInput:focus { border-color: var(--coral); }
+.searchInput::placeholder { color: var(--ink-faint); }
 
 .statusBadge {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-1);
   padding: 2px 10px; border-radius: 9999px;
+  font-family: var(--font-sans);
   font-size: var(--text-xs); font-weight: 500;
   min-width: 72px; text-align: center;
 }
@@ -60,9 +119,19 @@
 }
 
 .btnDelete {
-  color: var(--meta); font-size: var(--text-sm);
+  color: var(--ink-faint); font-family: var(--font-sans); font-size: var(--text-sm);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   transition: color var(--motion-fast), background var(--motion-fast);
+  box-shadow: var(--shadow-sm);
 }
 .btnDelete:hover { color: var(--danger); background: #fde8e8; }
+
+.fileName {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-sans); font-size: var(--text-sm);
+  color: var(--coral); font-weight: 500;
+  padding: 0; text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.fileName:hover { color: var(--coral-soft); text-decoration: underline; }

@@ -19,7 +19,7 @@ if str(ROOT_DIR) not in sys.path:
 from app.config import CHROMA_COLLECTION, CHROMA_PERSIST_DIR, PROCESSED_DIR
 from app.db.database import get_db, init_db
 from app.services import embedding_service
-from app.services.knowledge import split_markdown
+from app.services.knowledge import clean_mineru_markdown, split_markdown
 from app.utils.helpers import now_iso
 
 
@@ -56,7 +56,7 @@ async def rebuild(processed_dir: str | Path = PROCESSED_DIR) -> tuple[int, int]:
             await db.commit()
             doc_id = cursor.lastrowid
 
-            markdown_text = markdown_file.read_text(encoding="utf-8")
+            markdown_text = clean_mineru_markdown(markdown_file.read_text(encoding="utf-8"))
             chunks = split_markdown(markdown_text, doc_id, markdown_file.name)
             if not chunks:
                 await db.execute(

@@ -30,7 +30,11 @@ async def test_rebuild_knowledge_index_recreates_docs_and_vectors(monkeypatch, t
 
     processed_dir = tmp_path / "processed"
     processed_dir.mkdir()
-    (processed_dir / "产品参数.md").write_text("## 参数\n\n### 黄鹤楼硬红\n\n焦油量 11mg/支。", encoding="utf-8")
+    (processed_dir / "产品参数.md").write_text(
+        "## 参数\n\n### 黄鹤楼硬红\n\n焦油量 11mg/支。\n"
+        "<table><tr><td>产品</td><td>生产商</td></tr><tr><td>IQOS</td><td>PMI</td></tr></table>",
+        encoding="utf-8",
+    )
 
     db_path = tmp_path / "chat.db"
     chroma_dir = tmp_path / "chroma"
@@ -51,3 +55,8 @@ async def test_rebuild_knowledge_index_recreates_docs_and_vectors(monkeypatch, t
 
     collection = chromadb.PersistentClient(path=str(chroma_dir)).get_or_create_collection("knowledge_base")
     assert collection.count() == 1
+    stored = collection.get(include=["documents"])["documents"][0]
+    assert "<table" not in stored
+    assert "<td" not in stored
+    assert "产品 | 生产商" in stored
+    assert "IQOS | PMI" in stored

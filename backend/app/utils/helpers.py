@@ -21,6 +21,6 @@ def detect_file_type(filename: str) -> str:
         "pdf": "pdf",
         "doc": "word", "docx": "word",
         "png": "image", "jpg": "image", "jpeg": "image", "webp": "image",
-        "md": "markdown",
+        "md": "markdown", "html": "html", "htm": "html",
     }
     return mapping.get(ext, "unknown")

@@ -45,12 +45,14 @@ export default function TopBar({ onNewChat }: Props) {
           统计
         </button>
       </div>
-      <button className={styles.newChat} onClick={onNewChat}>
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
-        新会话
-      </button>
+      <div className={styles.newChatWrap}>
+        <button className={styles.newChat} onClick={onNewChat}>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+          新会话
+        </button>
+      </div>
     </div>
   );
 }
