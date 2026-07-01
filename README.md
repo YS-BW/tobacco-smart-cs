@@ -72,28 +72,6 @@ npm run dev
 ollama pull tobacco-csa:latest
 ```
 
-## Docker 部署
-
-```bash
-# 配置环境变量
-cp backend/.env.example backend/.env
-# 编辑 backend/.env，填入 DASHSCOPE_API_KEY 和 MINERU_TOKEN
-
-# 启动全部服务（ollama + backend + frontend）
-docker compose up -d
-
-# 首次需要拉取模型
-docker exec tobacco-ollama ollama pull tobacco-csa:latest
-```
-
-启动后访问 `http://localhost` 即可使用。
-
-| 容器 | 端口 | 说明 |
-|------|------|------|
-| frontend | 80 | nginx 静态服务 + API 反向代理 |
-| backend | 8000 | FastAPI 后端 |
-| ollama | 11434 | LLM 推理服务 |
-
 ## 核心功能
 
 - **RAG 知识问答** — 上传文档自动解析、分块、向量化，基于语义检索 + 精排生成回答

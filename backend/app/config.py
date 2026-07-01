@@ -11,8 +11,8 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 # 项目根目录
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# LLM（锁死本地 Ollama 微调模型）
-LLM_BASE_URL = "http://localhost:11434/v1"
+# LLM（锁死本地 Ollama 微调模型，Docker 内通过 LLM_BASE_URL 环境变量覆盖）
+LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434/v1")
 LLM_API_KEY = "ollama"
 LLM_MODEL = "tobacco-csa:latest"
 LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "2048"))
